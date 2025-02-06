@@ -6,6 +6,7 @@ let guessCounter = 6;
 let guessWord = [];
 let guessLetters = [];
 let solution = "";
+let win = false;
 
 const alphaBet = "QWERTYUIOPASDFGHJKLZXCVBNM";
 const alertLog = document.getElementsByClassName("alertLogs")[0];
@@ -68,7 +69,7 @@ function removeLastAlert()
 
 function addLetter(char)
 {
-    if (guessWord.length < 5)
+    if (guessWord.length < 5 && !win)
     {
         guessWord.push(char);
         updateCell();
@@ -77,8 +78,11 @@ function addLetter(char)
 
 function backSpace()
 {
-    guessWord.pop();
-    updateCell();
+    if (!win)
+    {
+        guessWord.pop();
+        updateCell();
+    }
 };
 
 function updateKeyboard(solution)
@@ -115,6 +119,11 @@ function updateKeyboard(solution)
 
 function enterButton()
 {
+    if (win)
+    {
+        return
+    }
+
     const lowerCaseGuessWord = guessWord.join('').toLowerCase();
     let alertText = "";
 
@@ -127,6 +136,7 @@ function enterButton()
         const checkSolution = check(lowerCaseGuessWord, solution);
         updateCellSolution(checkSolution);
         updateKeyboard(checkSolution)
+        win = (solution == lowerCaseGuessWord);
         guessCounter -= 1;
         guessWord = [];
         return;
