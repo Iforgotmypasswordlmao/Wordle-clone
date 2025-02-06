@@ -41,7 +41,7 @@ export function check(guess, solution)
     for (let letters in guess) 
     {
         const character = guess[letters];
-        if (solution.includes(character) && letterCounter[character] != 0) 
+        if (solution.includes(character) && letterCounter[character] != 0 && character != solution[letters]) 
         {
             letterCounter[character] -= 1;
             guessRevealed[letters]["colour"] = "yellow";
