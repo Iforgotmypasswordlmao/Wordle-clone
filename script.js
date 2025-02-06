@@ -14,8 +14,6 @@ const alertLog = document.getElementsByClassName("alertLogs")[0];
 function initialize()
 {
     solution = answers[Math.floor(Math.random() * answers.length)];
-    guessWord = [];
-    guessCounter = 6;
 
     const wordleGameBoard = document.getElementsByClassName("wordleBoard")[0];
     const cells = wordleGameBoard.getElementsByTagName('td');
